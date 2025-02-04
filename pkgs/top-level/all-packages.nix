@@ -9808,6 +9808,11 @@ with pkgs;
   go_latest = go_1_24;
   buildGoLatestModule = buildGo124Module;
 
+  go_1_16 = callPackage ../development/compilers/go/1.16.nix { };
+  buildGo116Module = callPackage ../build-support/go/module.nix {
+    go = buildPackages.go_1_16;
+  };
+
   go_1_23 = callPackage ../development/compilers/go/1.23.nix { };
   buildGo123Module = callPackage ../build-support/go/module.nix {
     go = buildPackages.go_1_23;
