@@ -13,13 +13,13 @@ buildRubyGem rec {
 
   name = "${gemName}-${version}";
   gemName = "bundix";
-  version = "2.5.2";
+  version = "6599974b1b6afa8ac9c51d84f5b6c178a275d2c5";
 
   src = fetchFromGitHub {
     owner = "nix-community";
     repo = "bundix";
     rev = version;
-    hash = "sha256-QnNdseCSwQYhO/ybzWsflMEk68TMgPU3HqXJ7av3SHE=";
+    hash = "sha256-zJQKsC9sId+ui2wZ0nUaDRP1SmzrNTWoDJxUdLoATqI=";
   };
 
   buildInputs = [
