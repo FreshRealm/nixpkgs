@@ -69,10 +69,26 @@ lib.makeOverridable (
   }@attrs:
 
   let
+    # Tries to use builtins.fetchurl for private gems, in order to use netrc.
+    # Fetching gems with builtins.fetchurl seems to reduce the concurrency of
+    # builds, so we really want to ONLY use it for resources that need it.
+    heuristic_fetchurl = source:
+      let
+        is_private = (builtins.length source.urls) == 1 && builtins.isList (
+          builtins.match ".*freshrealm.*" (builtins.head source.urls)
+        );
+        private = builtins.fetchurl {
+          url = builtins.head source.urls;
+          inherit (source) sha256;
+        };
+        non_private = fetchurl source;
+      in
+        if is_private then private else non_private;
+
     src =
       attrs.src or (
         if type == "gem" then
-          fetchurl {
+          heuristic_fetchurl {
             urls = map (remote: "${remote}/gems/${gemName}-${suffix}.gem") (
               attrs.source.remotes or [ "https://rubygems.org" ]
             );
