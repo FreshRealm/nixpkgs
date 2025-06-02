@@ -75,7 +75,7 @@ lib.makeOverridable (
     heuristic_fetchurl = source:
       let
         is_private = (builtins.length source.urls) == 1 && builtins.isList (
-          builtins.match ".*freshrealm.*" (builtins.head source.urls)
+          builtins.match ".*(freshrealm|contribsys).*" (builtins.head source.urls)
         );
         private = builtins.fetchurl {
           url = builtins.head source.urls;
