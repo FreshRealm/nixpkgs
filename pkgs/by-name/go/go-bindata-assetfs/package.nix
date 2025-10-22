@@ -12,7 +12,7 @@ buildGoModule {
   version = "unstable-2025-02-01";
 
   src = fetchFromGitHub {
-    owner = "elezarl";
+    owner = "elazarl";
     repo = "go-bindata-assetfs";
     rev = "d06c361cdac6293509ed6ecb3d8ef0d46066a0f7";
     hash = "sha256-rLeQbcv6V0Uc8iBEGMMnqxXcDJ2e91K96ZeYEYG6UCI=";
