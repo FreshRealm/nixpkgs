@@ -45,6 +45,9 @@ stdenv.mkDerivation (finalAttrs: {
   dontConfigure = true;
   dontBuild = true;
 
+  # FR: fixup gets confused on this arch.
+  dontFixup = hostArch == "osx-aarch_64";
+
   nativeBuildInputs = [
     makeWrapper
     autoPatchelfHook
